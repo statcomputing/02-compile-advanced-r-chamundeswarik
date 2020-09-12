@@ -1,0 +1,85 @@
+---
+title: "Assignment 2 - Compiling Advanced R"
+author: "Chamundeswari Koppisetti"
+date: "9/11/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+## Firtsly, have set the current working directory
+```{r working, include=TRUE, message=TRUE}
+
+setwd("D:/Courses/Stat 5361 - Statistical Computing/Assignment 2/adv-r")
+```
+
+
+## Upgraded RStudio from older version to 4.0.2 and installed packages to the latest version
+```{r version, include=TRUE, message=TRUE}
+
+# install.packages("installr")
+# installr::updateR()
+R.version
+
+```
+
+
+## Steps to build the book using Rstudio
+
+## 1. Downloaded the sourcefile [*Compile Hadley’s Advanced R to a PDF*]
+
+"https://brettklamer.com/diversions/statistical/compile-hadleys-advanced-r-programming-to-a-pdf/"
+
+## 2. Installed R Package Dependencies: 
+```{r bookbuilding1, include=TRUE, message=TRUE}
+
+# install.packages('bookdown') 
+# install.packages("devtools")
+
+# devtools::install_github("hadley/sloop")
+# devtools::install_github("hadley/emo")
+
+```
+
+## 3. Used the below to compile the book:
+```{r bookbuilding2, include=TRUE, message=TRUE}
+
+# bookdown::render_book("index.Rmd", output_format = "bookdown::pdf_book")
+
+```
+
+
+## Below are the error messages I received and how I have solved them, during the building process 
+
+1. Missing packages: Used 'install.packages()' to install all these mentioned: *lobstr*, *ggplot2*, *dplyr*, *DBI*, *RSQLite*, *zeallot*, *dbplyr*, *profvis*, *bench*, *tidyr*, *ggbeeswarm*
+
+2. 'make' not found: Installed *Rtools* manually and added the path ('C:\rtools40\usr\bin') to Evironment variables
+
+```{r}
+
+knitr::include_graphics("D:/Courses/Stat 5361 - Statistical Computing/Assignment 2/Make.JPG")
+
+```
+
+
+```{r check, include=TRUE,message=TRUE}
+
+## Cross checked the path name of 'make' after installation
+
+Sys.which('make')
+
+```
+
+## 3. Font "Inconsolata" and "AndaleMono" not found:
+
+3.1. Installed "Tex Liv" as it's much more stable to "tinytex"
+
+3.2. Downloaded '.ttf' and '.otf' files for "Inconsolata", and '.ttf' file for "AndaleMono"
+
+3.3. Saved Opentype file(.otf) into latex folder: "C:/texlive/2020/texmf-dist/fonts/opentype/public/inconsolata"
+
+True typefile(.ttf) into latex folder: "C:/texlive/2020/texmf-dist/fonts/truetype/public/inconsolata", "C:/texlive/2020/texmf-dist/fonts/truetype/public/andalemono"
+
+Note: .tex file can also be compiled using TeXworks editor of Tex Live
+
+# Final '_main.pdf' is generated
